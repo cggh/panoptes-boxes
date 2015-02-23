@@ -1,0 +1,12 @@
+*.lock
+dev/Berksfile.dev
+.vagrant
+*.box
+Gemfile.lock
+vendor-cookbooks
+packer_cache
+output-virtualbox-iso
+*.lic
+*.tar
+bootstrap-data
+license

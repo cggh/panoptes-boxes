@@ -1,0 +1,15 @@
+source "https://api.berkshelf.com"
+
+def my_cookbook(name, version = '>= 0.0.0', options = {})
+  cookbook(name, version, {
+    git: "git@github.com:cggh/chef-#{name}.git"
+   }.merge(options))
+end
+
+cookbook 'apache2',	tag: 'v3.0.1'
+cookbook 'mysql'
+cookbook 'mysql2_chef_gem', tag: 'v1.0.1'
+cookbook 'database',                tag: 'v2.3.0'
+cookbook 'python'
+cookbook 'git', '~> 4.1.0'
+cookbook 'panoptes', git: 'git@github.com:cggh/chef-panoptes.git'
