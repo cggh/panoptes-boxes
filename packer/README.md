@@ -11,7 +11,7 @@ VBoxManage hostonlyif create >/dev/null 2>&1
 
 Now assign an IP to this interface with a subnet that doesn't conflict with your home ones (avoid ```192.168.0.x```), for example ```192.168.23.x```
 ```
-vboxmanage hostonlyif ipconfig vboxnet0 --ip 192.168.23.1 --netmask 255.255.255.0
+vboxmanage hostonlyif ipconfig vboxnet0 --ip 192.168.56.1 --netmask 255.255.255.0
 ```
 
 Edit file ```packer/trusty-panoptes.json``` to choose an IP that can be bridged to one of your host Network Interfaces:
