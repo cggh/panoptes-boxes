@@ -50,3 +50,5 @@ elif [ -f /etc/debian_version ] ; then
     $apt remove linux-headers-$(uname -r)
     $apt autoremove
 fi
+#https://github.com/mitchellh/vagrant/issues/3341
+test -d /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions && ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions

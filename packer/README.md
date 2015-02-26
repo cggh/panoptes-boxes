@@ -31,7 +31,43 @@ packer build -only virtualbox-iso trusty-panoptes.json
 This will create a ```packer/output-virtualbox-iso``` folder containing ```<box-name>.ovf``` and ```<box-name>.vdmk```, ready to be imported into VirtualBox.
 
 The user/password to login is vagrant/vagrant
-You can also create a Vagrant box by adding a Packer post-processor
+
+Import the created ovf
+```
+VBoxManage import output-virtualbox-iso/trusty-panoptes.ovf
+```
+
+You can start the vm with:
+```
+VBoxHeadless --startvm "trusty-panoptes"
+```
+
+And stop with:
+```
+VBoxManage controlvm "trusty-panoptes" poweroff
+```
+
+Once you have the box up and running (IP address as set in your packer/trusty-panoptes.json file)
+
+http://192.168.56.23/admin.html
+
+Troubleshooting
+
+You can look at VMs available using the following commands
+```
+VBoxManage -nologo list vms
+```
+
+If you see something like this:
+==> virtualbox-iso: Unregistering and deleting virtual machine...
+==> virtualbox-iso: Error deleting virtual machine: VBoxManage error: VBoxManage: error: Could not find a registered machine named 'trusty-panoptes'
+==> virtualbox-iso: VBoxManage: error: Details: code VBOX_E_OBJECT_NOT_FOUND (0x80bb0001), component VirtualBox, interface IVirtualBox, callee nsISupports
+==> virtualbox-iso: VBoxManage: error: Context: "FindMachine(Bstr(VMName).raw(), machine.asOutParam())" at line 154 of file VBoxManageMisc.cpp
+
+Then try:
+```
+VBoxManage registervm ~/VirtualBox\ VMs/trusty-panoptes/trusty-panoptes.vbox
+```
 
 Uploading AMI to AWS
 ---
@@ -42,6 +78,27 @@ packer build -only amazon-ebs -var 'aws_access_key=YOUR ACCESS KEY' -var 'aws_se
 
 Running Packer VM on Vagrant
 ---
-If you want to create a VM with Packer and then run it with Packer, you can use  [this Vagrantfile]
+You can create a Vagrant box by adding a Packer post-processor at the end of the json file
+Note that if you do this then do don't get the ovf to import into VirtualBox
+```
+  "post-processors": [{
+                       "type": "vagrant",
+                       "only": ["virtualbox-iso"]
+                     }]
+```
+Once set up then you can start the box, using the supplied Vagrantfile, with
+```
+vagrant box add my-vb-box ./packer_virtualbox-iso_virtualbox.box
+vagrant init my-vb-box
+vi Vagrantfile.template 
+cp Vagrantfile.template Vagrantfile
+```
 
-Simply run ```vagrant up``` from the ```packer``` folder.
+```
+vagrant up
+```
+Connect using
+```
+vagrant ssh
+```
+(Networking not worked out yet)
