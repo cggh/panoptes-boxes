@@ -59,7 +59,7 @@ mkfs.ext4 /dev/xvdb1
 ```
 Edit /etc/fstab
 
-
+If you want to change the mysql tmpdir you will need to do this by hand as the mysql receipe doesn't support this yet - see issue #281 - don't forget the apparmor configuration (which is why it can't easily be done in the panoptes receipe)
 
 
 This link provides a useful description of how Packer and Vagrant can work together http://pretengineer.com/post/packer-vagrant-infra/
