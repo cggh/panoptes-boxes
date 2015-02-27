@@ -1,3 +1,7 @@
+The aim of this project is to provide a quick and easy way to provision boxes running panoptes
+
+Typically you would do your development on a VirtualBox VM, using Vagrant, and then use Packer to create an Amazon AMI that can be used to launch production instances
+
 First you will need to install Chef from https://downloads.chef.io/chef-dk
 
 Then download Packer from https://www.packer.io/downloads.html - /usr/local/bin is a good place to put the extracted files
