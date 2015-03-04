@@ -1,0 +1,44 @@
+{
+  "builders": [
+  ],
+  "provisioners": [
+    {
+    },
+    {
+    },
+    {
+    },
+    {
+      "cookbook_paths": [
+        "../common/vendor-cookbooks"
+      ],
+      "data_bags_path": "../common/data_bags",
+      "execute_command": "echo 'vagrant' | {{if .Sudo}}sudo -S{{end}} chef-solo --no-color -c {{.ConfigPath}} -j {{.JsonPath}} -l debug",
+      "install_command": "echo 'vagrant' | {{if .Sudo}}sudo -S{{end}} bash -c 'curl -L https://www.opscode.com/chef/install.sh| bash -s -- -v 12.0.3'",
+      "json": {
+        "panoptes": {
+          "db_password": "5678",
+          "server_name": "trusty_panoptes",
+          "source_dir": "/vagrant/panoptes/current/sampledata",
+          "install_root": "/vagrant/panoptes",
+          "version": "master",
+          "DQX": { "version": "master" },
+          "DQXServer": { "version": "master" }
+        },
+        "mysql": {
+          "server_root_password": "56789"
+        }
+      },
+      "run_list": [
+        "apt::default",
+        "panoptes::default"
+      ],
+      "prevent_sudo": false,
+      "skip_install": false,
+      "type": "chef-solo"
+    }
+  ],
+  "variables": {
+        "ip": "192.168.56.32"
+  }
+}

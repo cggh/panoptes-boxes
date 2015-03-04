@@ -87,7 +87,7 @@
     {
       "type": "shell",
       "execute_command": "echo 'vagrant' | sudo -E -S sh '{{ .Path }}'",
-      "inline": ["chmod 755 /home/vagrant/static-ip.sh && /home/vagrant/static-ip.sh 192.168.56.23 192.168.56.1 255.255.255.0"],
+      "inline": ["chmod 755 /home/vagrant/static-ip.sh && /home/vagrant/static-ip.sh {{user `ip`}} 192.168.56.1 255.255.255.0"],
       "only": ["virtualbox-iso"]
     },
     {
@@ -98,11 +98,10 @@
       "execute_command": "echo 'vagrant' | {{if .Sudo}}sudo -S{{end}} chef-solo --no-color -c {{.ConfigPath}} -j {{.JsonPath}} -l debug",
       "install_command": "echo 'vagrant' | {{if .Sudo}}sudo -S{{end}} bash -c 'curl -L https://www.opscode.com/chef/install.sh| bash -s -- -v 12.0.3'",
       "json": {
-        "ip": "192.168.56.32",
         "panoptes": {
           "db_password": "5678",
           "server_name": "trusty_panoptes",
-          "version": "1.5.1",
+          "version": "master",
           "DQX": { "version": "master" },
           "DQXServer": { "version": "master" }
         },
@@ -129,6 +128,7 @@
     }
   ],
   "variables": {
+    "ip": "192.168.56.32",
     "aws_access_key": "",
     "aws_secret_key": ""
   }
