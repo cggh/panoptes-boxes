@@ -21,9 +21,10 @@
           "server_name": "trusty_panoptes",
           "source_dir": "/vagrant/panoptes/current/sampledata",
           "install_root": "/vagrant/panoptes",
-          "version": "master",
-          "DQX": { "version": "master" },
-          "DQXServer": { "version": "master" }
+          "git": { "revision": "HEAD", "branch": "master",
+          "DQX": { "revision": "HEAD", "branch": "master"},
+          "DQXServer": { "revision": "HEAD", "branch": "master"}},
+          "database_buffer_pool_size": "512M"
         },
         "mysql": {
           "server_root_password": "56789"
@@ -39,6 +40,7 @@
     }
   ],
   "variables": {
-        "ip": "192.168.56.32"
+        "ip": "192.168.56.32",
+        "mem": "2048"
   }
 }

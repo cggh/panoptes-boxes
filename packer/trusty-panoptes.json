@@ -46,7 +46,7 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "4096"
+          {{user `mem`}}
         ],
         [
           "modifyvm",
@@ -129,6 +129,7 @@
   ],
   "variables": {
     "ip": "192.168.56.32",
+    "mem": "4096",
     "aws_access_key": "",
     "aws_secret_key": ""
   }
