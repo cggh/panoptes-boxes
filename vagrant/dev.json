@@ -32,7 +32,8 @@
       },
       "run_list": [
         "apt::default",
-        "panoptes::default"
+        "panoptes::default",
+        "panoptes::wsgi_monitor"
       ],
       "prevent_sudo": false,
       "skip_install": false,
