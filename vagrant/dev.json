@@ -21,10 +21,9 @@
           "server_name": "trusty_panoptes",
           "source_dir": "/vagrant/panoptes/current/sampledata",
           "install_root": "/vagrant/panoptes",
-          "git": { "revision": "HEAD", "branch": "master",
-          "DQX": { "revision": "HEAD", "branch": "master"},
-          "DQXServer": { "revision": "HEAD", "branch": "master"}},
-          "database_buffer_pool_size": "512M"
+          "git": { "revision": "master"} ,
+          "database_buffer_pool_size": "512M",
+          "dev": true
         },
         "mysql": {
           "server_root_password": "56789"
@@ -32,7 +31,8 @@
       },
       "run_list": [
         "apt::default",
-        "panoptes::default"
+        "panoptes::default",
+        "panoptes::wsgi_monitor"
       ],
       "prevent_sudo": false,
       "skip_install": false,

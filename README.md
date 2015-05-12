@@ -46,10 +46,12 @@ Things to do once the instance has been launched
 Create users (only ubuntu by default)
 ```
 apt-get install etckeeper
+apt-get update
+apt-get upgrade
 ```
 
 ```
-dpkg-reconfigure -plow unattended-upgrade
+dpkg-reconfigure -plow unattended-upgrades
 ```
 
 You will need to configure mount points and make sure that the directories created by the chef scripts are on the right volume
@@ -63,7 +65,16 @@ mkfs.ext4 /dev/xvdb1
 ```
 Edit /etc/fstab
 
-If you want to change the mysql tmpdir you will need to do this by hand as the mysql receipe doesn't support this yet - see issue #281 - don't forget the apparmor configuration (which is why it can't easily be done in the panoptes receipe)
+The mysql instance is called mysql-default so, for example:
+```
+service mysql-default stop
+```
 
+If you want to change the mysql tmpdir you will need to do this by hand as the mysql receipe doesn't support this yet - see issue https://github.com/chef-cookbooks/mysql/issues/281 - don't forget the apparmor configuration (which is why it can't easily be done in the panoptes receipe)
+```
+vi /etc/mysql-default/conf.d/default
+vi /etc/apparmor.d/local/mysql/default
+service apparmor reload
+```
 
 This link provides a useful description of how Packer and Vagrant can work together http://pretengineer.com/post/packer-vagrant-infra/

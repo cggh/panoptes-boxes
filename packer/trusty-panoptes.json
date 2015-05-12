@@ -3,8 +3,9 @@
     {
       "type": "amazon-ebs",
       "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
       "ami_name": "panoptes {{timestamp}}",
-      "instance_type": "t1.micro",
+      "instance_type": "m3.medium",
       "region": "eu-west-1",
       "source_ami": "ami-394ecc4e",
       "ssh_username": "ubuntu",
@@ -46,7 +47,7 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          {{user `mem`}}
+          "{{user `mem`}}"
         ],
         [
           "modifyvm",
@@ -101,9 +102,9 @@
         "panoptes": {
           "db_password": "5678",
           "server_name": "trusty_panoptes",
-          "version": "master",
-          "DQX": { "version": "master" },
-          "DQXServer": { "version": "master" }
+          "git": { "revision": "master", "branch": "master",
+          "DQX": { "revision": "master", "branch": "master"},
+          "DQXServer": { "revision": "master", "branch": "master"}}
         },
         "mysql": {
           "server_root_password": "56789"
