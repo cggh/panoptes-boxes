@@ -1,6 +1,6 @@
 source "https://api.berkshelf.com"
 
-cookbook 'apache2',	tag: 'v3.0.1'
+cookbook 'apache2',	tag: 'v3.2.2'
 cookbook 'mysql'
 cookbook 'mysql2_chef_gem', tag: 'v1.0.1'
 cookbook 'database',                tag: 'v2.3.0'
