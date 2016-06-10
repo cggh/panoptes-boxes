@@ -107,7 +107,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Used as Vagrant cache during build
     chef.provisioning_path  = "/tmp/vagrant-chef-solo"
     chef.file_cache_path    = chef.provisioning_path
-    chef.cookbooks_path     = "../common/vendor-cookbooks"
+    chef.cookbooks_path     = ["../common/vendor-cookbooks", "../common/cookbooks"]
     chef.data_bags_path     = "../common/data_bags"
 
     # Pass the rest of the attributes
