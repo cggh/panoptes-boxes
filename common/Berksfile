@@ -1,10 +1,10 @@
 source "https://api.berkshelf.com"
 
 cookbook 'apache2',	tag: 'v3.2.2'
-cookbook 'mysql'
+cookbook 'mysql', '~> 6.0'
 cookbook 'mysql2_chef_gem', tag: 'v1.0.1'
 cookbook 'database',                tag: 'v2.3.0'
 cookbook 'python'
 cookbook 'nodejs'
-cookbook 'git', '~> 4.1.0'
+cookbook 'git', '~> 4.0'
 cookbook 'panoptes', git: 'https://github.com/cggh/chef-panoptes.git'
